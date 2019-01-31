@@ -63,6 +63,11 @@ namespace MegaDesk
             surfaceAreBox.Text = surfaceArea.ToString();
         }
 
+        private void selectMaterial_Click(object sender, EventArgs e)
+        {
+            string materialType = box_Materials.Text;
+        }
+
         
     }
 }
