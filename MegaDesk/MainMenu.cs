@@ -42,5 +42,9 @@ namespace MegaDesk
             Hide();
         }
 
+        private void ExitBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

@@ -6,16 +6,13 @@ using System.Threading.Tasks;
 
 namespace MegaDesk
 {
-    class Desk
+    public class Desk
     {
+        public enum DesktopMaterial { oak, laminate, pine, rosewood, veneer }
 
         public decimal Width { get; set; }
         public decimal Depth { get; set; }
         public int DrawerNum { get; set; }
-
-        public enum Material { oak,laminate,pine,rosewood,veneer};
-
-        
-
+        public DesktopMaterial Material { get; set; }
     }
 }

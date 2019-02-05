@@ -6,71 +6,131 @@ using System.Threading.Tasks;
 
 namespace MegaDesk
 {
-    class DeskQuotes
+    public class DeskQuotes
     {
-        public string CustomerName { get; set; }
-        public int numShippingDay { get; set; }
-        public DateTime quoteDate { get; set; }
-        public decimal shippingCost { get; set; }
-        public decimal surfaceAreaCost { get; set; }
-        public decimal structureCost { get; set; }
-        public decimal baseCost { get; set; }
+        public enum ShippingOptions { ThreeDays, FiveDays, SevenDays, FourteenDays }
+
+        //DESK INSTANCE
         public Desk Desk { get; set; }
-        public string material { get; set; }
+        public DateTime QuoteDate { get; set; }
+        public string CustomerName { get; set; }
+
+        public ShippingOptions Shipping { get; set; }
+        public decimal QuoteTotal { get; set; }
+
+        //CONSTANTS
+        public const decimal BASECOST = 200;
+        public const decimal OAKCOST = 200;
+        public const decimal LAMINATECOST = 100;
+        public const decimal PINECOST = 50;
+        public const decimal ROSEWOODCOST = 300;
+        public const decimal VENEERCOST = 125;
+
+        public const int DRAWERCOST = 50;
+        public const decimal COSTPERSQIN = 1;
+
+        public const decimal THREE_DAYS_LESS_THAN_1000 = 60;
+        public const decimal THREE_DAYS_1000_2000 = 70;
+        public const decimal THREE_DAYS_2000 = 80;
+        public const decimal FIVE_DAYS_LESS_THAN_1000 = 40;
+        public const decimal FIVE_DAYS_1000_2000 = 50;
+        public const decimal FIVE_DAYS_2000 = 60;
+        public const decimal SEVEN_DAYS_LESS_THAN_1000 = 30;
+        public const decimal SEVEN_DAYS_1000_2000 = 35;
+        public const decimal SEVEN_DAYS_2000 = 40;
 
 
-        public decimal getQuote()
+        public decimal GetQuote()
         {
-            decimal totalCost = surfaceAreaCost + structureCost;
-            return totalCost;
-        }
+            //BASE DESK COST
+            decimal quoteTotal = BASECOST;
 
-        public decimal getSurfaceAreaCost()
-        {
             //SURFACE AREA COST
- 
-            decimal surfaceArea = Desk.Width + Desk.Depth;
-            decimal costPerSqIn = 1;
-            surfaceAreaCost = surfaceArea * costPerSqIn;
+            decimal surfaceArea = this.Desk.Width * this.Desk.Depth;
+            decimal surfacePrice = 0;
 
-            //SWITCH FOR MATERIAL
-
-            /*
-            switch (Desk.Material = )
+            //IF OVER 1000SQIN
+            if(surfaceArea > 1000)
             {
-                case Desk.Material.oak:
-                    materialCost = 200;
+                surfacePrice = (surfaceArea - 1000) * COSTPERSQIN;
+            }
+
+            quoteTotal += surfacePrice;
+
+            //ADD DRAWER COST
+            decimal drawerCost = this.Desk.DrawerNum * DRAWERCOST;
+            quoteTotal += drawerCost;
+
+
+            //DELIVERY COSTS
+            switch (Shipping)
+            {
+                case ShippingOptions.ThreeDays:
+                    if(surfaceArea < 1000)
+                    {
+                        quoteTotal += THREE_DAYS_LESS_THAN_1000;
+                    }
+                    else if(surfaceArea >= 1000 && surfaceArea < 2000)
+                    {
+                        quoteTotal += THREE_DAYS_1000_2000;
+                    }
+                    else
+                    {
+                        quoteTotal += THREE_DAYS_2000;
+                    }
                     break;
-                case Desk.Material.laminate:
-                    materialCost = 100;
+                case ShippingOptions.FiveDays:
+                    if (surfaceArea < 1000)
+                    {
+                        quoteTotal += FIVE_DAYS_LESS_THAN_1000;
+                    }
+                    else if (surfaceArea >= 1000 && surfaceArea < 2000)
+                    {
+                        quoteTotal += FIVE_DAYS_1000_2000;
+                    }
+                    else
+                    {
+                        quoteTotal += FIVE_DAYS_2000;
+                    }
                     break;
-                case Desk.Material.pine:
-                    materialCost = 50;
-                    break;
-                case Desk.Material.rosewood:
-                    materialCost = 300;
-                    break;
-                case Desk.Material.veneer:
-                    materialCost = 125;
-                    break;
-                default:
+                case ShippingOptions.SevenDays:
+                    if (surfaceArea < 1000)
+                    {
+                        quoteTotal += SEVEN_DAYS_LESS_THAN_1000;
+                    }
+                    else if (surfaceArea >= 1000 && surfaceArea < 2000)
+                    {
+                        quoteTotal += SEVEN_DAYS_1000_2000;
+                    }
+                    else
+                    {
+                        quoteTotal += SEVEN_DAYS_2000;
+                    }
                     break;
             }
-            */
 
-            return surfaceAreaCost;
+            //DESK MATERIAL COST
+            switch (Desk.Material)
+            {
+                case Desk.DesktopMaterial.oak:
+                    quoteTotal += OAKCOST;
+                    break;
+                case Desk.DesktopMaterial.laminate:
+                    quoteTotal += LAMINATECOST;
+                    break;
+                case Desk.DesktopMaterial.pine:
+                    quoteTotal += PINECOST;
+                    break;
+                case Desk.DesktopMaterial.rosewood:
+                    quoteTotal += ROSEWOODCOST;
+                    break;
+                case Desk.DesktopMaterial.veneer:
+                    quoteTotal += VENEERCOST;
+                    break;
+            }
 
+            return quoteTotal;
 
-        }
-
-        public decimal getStructureCost()
-        {
-            //STRUCTURE COST
-            decimal baseCost = 200;
-            decimal drawerCost = Desk.DrawerNum * 50;
-            structureCost = baseCost + drawerCost;
-
-            return structureCost;
         }
     }
 }

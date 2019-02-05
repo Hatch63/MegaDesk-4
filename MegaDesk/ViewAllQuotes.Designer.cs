@@ -28,49 +28,116 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.ViewCancelBtn = new System.Windows.Forms.Button();
+            this.gridAllQuotes = new System.Windows.Forms.DataGridView();
+            this.Date = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Customer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GridDepth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GridWidth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Drawers = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SurfaceMaterial = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ShippingType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.QuoteTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.viewAllCancel = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.gridAllQuotes)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // gridAllQuotes
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(308, 94);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(172, 31);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Qoutes Page";
+            this.gridAllQuotes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.gridAllQuotes.BackgroundColor = System.Drawing.Color.LightGray;
+            this.gridAllQuotes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridAllQuotes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Date,
+            this.Customer,
+            this.GridDepth,
+            this.GridWidth,
+            this.Drawers,
+            this.SurfaceMaterial,
+            this.ShippingType,
+            this.QuoteTotal});
+            this.gridAllQuotes.Location = new System.Drawing.Point(0, 1);
+            this.gridAllQuotes.Name = "gridAllQuotes";
+            this.gridAllQuotes.Size = new System.Drawing.Size(806, 384);
+            this.gridAllQuotes.TabIndex = 0;
+            this.gridAllQuotes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridAllQuotes_CellContentClick);
             // 
-            // ViewCancelBtn
+            // Date
             // 
-            this.ViewCancelBtn.BackColor = System.Drawing.Color.LightSteelBlue;
-            this.ViewCancelBtn.Font = new System.Drawing.Font("MV Boli", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ViewCancelBtn.Location = new System.Drawing.Point(274, 337);
-            this.ViewCancelBtn.Name = "ViewCancelBtn";
-            this.ViewCancelBtn.Size = new System.Drawing.Size(242, 70);
-            this.ViewCancelBtn.TabIndex = 5;
-            this.ViewCancelBtn.Text = "Cancel";
-            this.ViewCancelBtn.UseVisualStyleBackColor = false;
-            this.ViewCancelBtn.Click += new System.EventHandler(this.CancelViewButton_Click);
+            this.Date.HeaderText = "Date";
+            this.Date.Name = "Date";
+            // 
+            // Customer
+            // 
+            this.Customer.HeaderText = "Customer";
+            this.Customer.Name = "Customer";
+            // 
+            // GridDepth
+            // 
+            this.GridDepth.HeaderText = "Depth";
+            this.GridDepth.Name = "GridDepth";
+            // 
+            // GridWidth
+            // 
+            this.GridWidth.HeaderText = "Width";
+            this.GridWidth.Name = "GridWidth";
+            // 
+            // Drawers
+            // 
+            this.Drawers.HeaderText = "Drawers";
+            this.Drawers.Name = "Drawers";
+            // 
+            // SurfaceMaterial
+            // 
+            this.SurfaceMaterial.HeaderText = "Surface Material";
+            this.SurfaceMaterial.Name = "SurfaceMaterial";
+            // 
+            // ShippingType
+            // 
+            this.ShippingType.HeaderText = "Shipping Type";
+            this.ShippingType.Name = "ShippingType";
+            // 
+            // QuoteTotal
+            // 
+            this.QuoteTotal.HeaderText = "Quote Total";
+            this.QuoteTotal.Name = "QuoteTotal";
+            // 
+            // viewAllCancel
+            // 
+            this.viewAllCancel.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.viewAllCancel.Font = new System.Drawing.Font("MV Boli", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.viewAllCancel.Location = new System.Drawing.Point(295, 391);
+            this.viewAllCancel.Name = "viewAllCancel";
+            this.viewAllCancel.Size = new System.Drawing.Size(279, 47);
+            this.viewAllCancel.TabIndex = 6;
+            this.viewAllCancel.Text = "Return to Menu";
+            this.viewAllCancel.UseVisualStyleBackColor = false;
+            this.viewAllCancel.Click += new System.EventHandler(this.CancelViewButton_Click);
             // 
             // ViewAllQuotes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.ViewCancelBtn);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.viewAllCancel);
+            this.Controls.Add(this.gridAllQuotes);
             this.Name = "ViewAllQuotes";
             this.Text = "ViewAllQuotes";
+            ((System.ComponentModel.ISupportInitialize)(this.gridAllQuotes)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button ViewCancelBtn;
+        private System.Windows.Forms.DataGridView gridAllQuotes;
+        private System.Windows.Forms.Button viewAllCancel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Date;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Customer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GridDepth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GridWidth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Drawers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SurfaceMaterial;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ShippingType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn QuoteTotal;
     }
 }
